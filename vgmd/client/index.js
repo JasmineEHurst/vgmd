@@ -1,4 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-ReactDOM.render(<App />, document.getElementById('root'));
+import RouteList from './routes';
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.render(
+  // <BrowserRouter>
+    <RouteList />
+  // </BrowserRouter>
+  , document.getElementById('root'));
