@@ -25431,6 +25431,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(12);
+
 var _Nav = __webpack_require__(88);
 
 var _Nav2 = _interopRequireDefault(_Nav);
@@ -25438,8 +25440,6 @@ var _Nav2 = _interopRequireDefault(_Nav);
 var _Home = __webpack_require__(39);
 
 var _Home2 = _interopRequireDefault(_Home);
-
-var _reactRouterDom = __webpack_require__(12);
 
 var _Footer = __webpack_require__(42);
 
@@ -25451,7 +25451,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Dependency imports
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+/*
+ Local imports
+*/
+
 
 var Layout = function (_Component) {
   _inherits(Layout, _Component);
