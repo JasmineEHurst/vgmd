@@ -2893,11 +2893,11 @@ var Home = function (_Component) {
   }
 
   _createClass(Home, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { className: 'container', id: 'home-container' },
+        "div",
+        { className: "container", id: "home-container" },
         _react2.default.createElement(_HomeContainer2.default, null),
         _react2.default.createElement(_Footer2.default, null)
       );
@@ -3387,10 +3387,14 @@ var Footer = function Footer() {
     _react2.default.createElement(
       "div",
       { className: "text-center" },
-      "@ 2017 ",
+      "@ 2017",
+      " ",
       _react2.default.createElement(
         "a",
-        { href: "https://github.com/JasmineEHurst/vgmd/tree/basic_setup/vgmd", target: "_blank" },
+        {
+          href: "https://github.com/JasmineEHurst/vgmd/tree/basic_setup/vgmd",
+          target: "_blank"
+        },
         "Jasmine Hurst"
       )
     )
@@ -3424,9 +3428,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _reactDom2.default.render(
 // <BrowserRouter>
-_react2.default.createElement(_routes2.default, null)
+_react2.default.createElement(_routes2.default, null),
 // </BrowserRouter>
-, document.getElementById('root'));
+document.getElementById("root"));
 
 /***/ }),
 /* 44 */
@@ -21867,7 +21871,7 @@ module.exports = camelize;
 
 
 Object.defineProperty(exports, "__esModule", {
-   value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21897,35 +21901,35 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var RouteList = function (_Component) {
-   _inherits(RouteList, _Component);
+  _inherits(RouteList, _Component);
 
-   function RouteList() {
-      _classCallCheck(this, RouteList);
+  function RouteList() {
+    _classCallCheck(this, RouteList);
 
-      return _possibleConstructorReturn(this, (RouteList.__proto__ || Object.getPrototypeOf(RouteList)).apply(this, arguments));
-   }
+    return _possibleConstructorReturn(this, (RouteList.__proto__ || Object.getPrototypeOf(RouteList)).apply(this, arguments));
+  }
 
-   _createClass(RouteList, [{
-      key: 'render',
-      value: function render() {
-         return _react2.default.createElement(
-            _reactRouterDom.BrowserRouter,
-            null,
-            _react2.default.createElement(
-               'div',
-               null,
-               _react2.default.createElement(
-                  _reactRouterDom.Route,
-                  { path: '/', component: _Layout2.default },
-                  '// ',
-                  _react2.default.createElement(_reactRouter.IndexRoute, { path: '/home', component: _Home2.default })
-               )
-            )
-         );
-      }
-   }]);
+  _createClass(RouteList, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        _reactRouterDom.BrowserRouter,
+        null,
+        _react2.default.createElement(
+          "div",
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Route,
+            { path: "/", component: _Layout2.default },
+            "// ",
+            _react2.default.createElement(_reactRouter.IndexRoute, { path: "/home", component: _Home2.default })
+          )
+        )
+      );
+    }
+  }]);
 
-   return RouteList;
+  return RouteList;
 }(_react.Component);
 
 exports.default = RouteList;
@@ -25470,22 +25474,22 @@ var Layout = function (_Component) {
   }
 
   _createClass(Layout, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { id: 'master-container' },
+        "div",
+        { id: "master-container" },
         _react2.default.createElement(
-          'div',
-          { id: 'navigation-container', className: 'container_12 clearfix' },
+          "div",
+          { id: "navigation-container", className: "container_12 clearfix" },
           _react2.default.createElement(_Nav2.default, null)
         ),
         _react2.default.createElement(
-          'div',
-          { id: 'base-container' },
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _Home2.default })
+          "div",
+          { id: "base-container" },
+          _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _Home2.default })
         ),
-        '// ',
+        "// ",
         this.props.children
       );
     }
