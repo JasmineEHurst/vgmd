@@ -8,6 +8,8 @@ const gravatar = require("gravatar");
 const keys = require("../../../config/keys");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+// Bring in passport
+const passport = require("passport");
 
 //@route  GET /api/users/test
 //@desc   Tests the users route
@@ -98,6 +100,22 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+//@route  GET /api/users/current
+//@desc   Return current user
+//@access Private. This is an example route and should not be used
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // Send the user back, but not the password!
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    });
+  }
+);
 
 // Have to export module so server.js can pick it up
 module.exports = router;

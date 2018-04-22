@@ -3,6 +3,7 @@ var express = require("express");
 var router = require("./routes/routes.js");
 var path = require("path");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 
 // Bring in resources
 const users = require("./routes/api/users");
@@ -34,6 +35,11 @@ app.set("views", path.join(__dirname, "../client"));
 app.use(express.static(path.join(__dirname, "../client")));
 
 app.use("/", router);
+
+// Passport Middleware
+app.use(passport.initialize());
+// Passport Configuration
+require("../config/passport")(passport);
 
 // Use API routes - base URLs
 app.use("/api/users", users);
