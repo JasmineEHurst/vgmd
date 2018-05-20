@@ -6,6 +6,8 @@ const passport = require("passport");
 // const keys = require("");
 // Load validation
 const validateProfileInput = require("../../../validation/profile");
+const validateExperienceInput = require("../../../validation/experience");
+const validateEducationInput = require("../../../validation/education");
 // Load models
 const Profile = require("../../../models/Profile");
 const User = require("../../../models/User");
@@ -167,6 +169,129 @@ router.post(
           new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
+    });
+  }
+);
+
+//@route  POST /api/profiles/experience
+//@desc   Add experience to profile
+//@access Private - because we need the actual user
+router.post(
+  "/experience",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateExperienceInput(req.body);
+    // Check validations
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      const newExperience = {
+        title: req.body.title,
+        company: req.body.company,
+        location: req.body.location,
+        from: req.body.from,
+        to: req.body.to,
+        current: req.body.current,
+        description: req.body.description
+      };
+      //Add to the experience array of the user
+      profile.experience.unshift(newExperience);
+      profile.save().then(profile => res.json(profile));
+    });
+  }
+);
+
+//@route  POST /api/profiles/education
+//@desc   Add education to profile
+//@access Private - because we need the actual user
+router.post(
+  "/education",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateEducationInput(req.body);
+    // Check validations
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      const newEducation = {
+        school: req.body.school,
+        degree: req.body.degree,
+        fieldOfStudy: req.body.fieldOfStudy,
+        from: req.body.from,
+        to: req.body.to,
+        current: req.body.current,
+        description: req.body.description
+      };
+      //Add to the experience array of the user
+      profile.education.unshift(newEducation);
+      profile.save().then(profile => res.json(profile));
+    });
+  }
+);
+
+//@route  DELETE /api/experience/:exp_id
+//@desc   Delete experience of profile
+//@access Private - because we need the actual user
+router.delete(
+  "/experience/:exp_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      // Get remove index
+      const removeIndex = profile.experience
+        .map(item => item.id)
+        .indexOf(req.params.exp_id);
+
+      // Splice out of Array
+      profile.experience.splice(removeIndex, 1);
+
+      // save
+      profile
+        .save()
+        .then(profile => res.json(profile))
+        .catch(err => res.status(404).json(err));
+    });
+  }
+);
+
+//@route  DELETE /api/education/:edu_id
+//@desc   Delete education of profile
+//@access Private - because we need the actual user
+router.delete(
+  "/education/:edu_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      // Get remove index
+      const removeIndex = profile.education
+        .map(item => item.id)
+        .indexOf(req.params.edu_id);
+
+      // Splice out of Array
+      profile.experience.splice(removeIndex, 1);
+
+      // save
+      profile
+        .save()
+        .then(profile => res.json(profile))
+        .catch(err => res.status(404).json(err));
+    });
+  }
+);
+
+//@route  DELETE /api/profile/:
+//@desc   Delete user and profile
+//@access Private - because we need the actual user
+router.delete(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+      User.findOneAndRemove({ _id: req.user.id }).then(() =>
+        res.json({ success: true })
+      );
     });
   }
 );
