@@ -8,7 +8,11 @@ const passport = require("passport");
 // Bring in resources
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
-const profiles = require("./routes/api/profiles");
+const tags = require("./routes/api/tags");
+const colorSchemes = require("./routes/api/colorSchemes");
+const profiles
+ = require("./routes/api/profiles");
+const songs = require("./routes/api/songs");
 const mongoose = require("mongoose");
 
 var app = express();
@@ -45,5 +49,8 @@ require("../config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/posts", posts);
 app.use("/api/profiles", profiles);
+app.use("/api/songs", songs);
+app.use("/api/tags", tags);
+app.use("/api/colorschemes", colorSchemes);
 
 module.exports = app;

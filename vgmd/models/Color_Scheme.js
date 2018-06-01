@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ColorSchemeSchema = ({
+const ColorSchemeSchema = new Schema ({
+  name: {
+    type: String,
+    require: true
+  },
   css_link: {
     type: String,
     required: true
@@ -11,4 +15,5 @@ const ColorSchemeSchema = ({
     required: true
   }
 })
-module.exports = ColorSchemeSchema = mongoose.model('colorSchemes', ColorSchemeSchema);
+
+module.exports = ColorScheme = mongoose.model('colorSchemes', ColorSchemeSchema);

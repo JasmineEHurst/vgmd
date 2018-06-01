@@ -1,26 +1,34 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
 const SongSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   youtube_link: {
     type: String,
-    required: true
+    required: true,
   },
   soundtrack: {
     type: String,
-    required: true
+    required: true,
   },
   composer: {
     type: String,
-    required: true
+    required: true,
   },
   created: {
     type: Date,
-    required: true
-  }
-});
-module.exports = Song = mongoose.model("songs", SongSchema);
+    required: true,
+  },
+  tags: [{
+      tag:{
+        type: Schema.Types.ObjectId,
+        ref: "tags"
+      }
+    }
+  ]
+})
+
+module.exports = Song = mongoose.model("songs", SongSchema)
