@@ -8,12 +8,11 @@ const Song = require("../../../models/Song")
 const validateSongInput = require("../../../validation/song")
 const validateTagInput = require("../../../validation/tag")
 
-//@route  GET /api/songs/all
+//@route  GET /api/songs/
 //@desc   Get all songs
 //@access Public
-router.get("/all", (req, res) => {
+router.get("/", (req, res) => {
   const errors = {}
-
   Song.find()
     .then(songs => {
       if (!songs) {
@@ -27,6 +26,24 @@ router.get("/all", (req, res) => {
     })
 })
 
+//@route  GET /api/songs/id
+//@desc   Get song by ID
+//@access Public
+router.get("/:id", (req, res) => {
+  const errors = {}
+  Song.findById(req.params.id)
+    .then(song => {
+      if (!song) {
+        errors.NoSongFound = "This song does not exist."
+        res.status(404).json(errors)
+      }
+      res.json(song)
+    })
+    .catch(err => {
+      res.status(404).json(err)
+    })
+})
+
 //@route  POST /api/songs/
 //@desc   Add a new song
 //@access Private
@@ -34,8 +51,11 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const errors = {}
+    const {errors, isValid} = validateSongInput(req.body)
 
+    if(!isValid) {
+      return res.status(400).json(errors)
+    }
     const songFields = {}
     songFields.name = req.body.name
     songFields.youtube_link = req.body.youtube_link

@@ -25,7 +25,7 @@ router.get(
       .populate("user", ["name", "avatar"])
       .then(profile => {
         if (!profile) {
-          errors.noprofile = " There is no profile for the user"
+          errors.noprofile = "There is no profile for the user"
           return res.status(404).json(errors)
         }
         res.json(profile)

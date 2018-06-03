@@ -12,7 +12,7 @@ const validateTagInput = require("../../../validation/tag")
 //@route  GET /api/tags/all
 //@desc   Get all Tags
 //@access Public
-router.get("/all", (req, res) => {
+router.get("/", (req, res) => {
   const errors = {}
   Tag.find()
     .then(tags => {

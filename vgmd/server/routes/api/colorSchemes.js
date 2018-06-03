@@ -12,7 +12,7 @@ const validateColorSchemeInput = require("../../../validation/colorScheme")
 //@route  GET /api/colorschems/all
 //@desc   Get all color schemes
 //@access Public
-router.get("/all", (req, res) => {
+router.get("/", (req, res) => {
   const errors = {}
   Color_Scheme.find()
     .then(tags => {
